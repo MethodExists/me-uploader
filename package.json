@@ -1,0 +1,63 @@
+{
+  "name": "me-uploader",
+  "version": "0.0.1",
+  "description": "File uploader component",
+  "main": "lib/index.js",
+  "files": [
+    "css",
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "build": "nwb build-react-component --copy-files --no-demo",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "node demo/server.js",
+    "test": "nwb test-react",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server",
+    "lint": "eslint src tests demo/src",
+    "precommit": "lint-staged",
+    "prepublishOnly": "npm run test && npm run build",
+    "prepush": "npm run lint --silent && npm run test",
+    "patch": "npm run prepublishOnly && npm version patch && git push --no-verify && git push --tags --no-verify && npm publish --ignore-scripts",
+    "minor": "npm run prepublishOnly && npm version minor && git push --no-verify && git push --tags --no-verify && npm publish --ignore-scripts"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint"
+    ]
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "antd": "2.x",
+    "dva": "1.x",
+    "react": "15.x"
+  },
+  "devDependencies": {
+    "@methodexists/eslint-config": "0.0.7",
+    "antd": "^2.12.5",
+    "babel-plugin-import": "^1.3.1",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "child_process": "^1.0.2",
+    "cors": "^2.8.4",
+    "dva": "^1.2.1",
+    "express": "^4.15.4",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.3",
+    "nwb": "^0.17.3",
+    "nwb-less": "^0.6.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MethodExists/me-uploader"
+  },
+  "bugs": {
+    "url": "https://github.com/MethodExists/me-uploader/issues"
+  },
+  "keywords": [
+    "react-component"
+  ]
+}
