@@ -1,5 +1,5 @@
 {
-  "name": "me-uploader",
+  "name": "@methodexists/me-uploader",
   "version": "0.0.1",
   "description": "File uploader component",
   "main": "lib/index.js",
