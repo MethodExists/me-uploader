@@ -1,22 +1,25 @@
 import expect from 'expect';
-import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import MyComponent from 'src/';
+// import React from 'react';
+// import { render, unmountComponentAtNode } from 'react-dom';
+// import { PublicUploader } from 'src/';
 
-describe('MyComponent', () => {
-  let node;
-
-  beforeEach(() => {
-    node = document.createElement('div');
+describe('me-uploader', () => {
+  it('ready for you to write tests', () => {
+    expect(true).toBeTruthy();
   });
+  // let node;
 
-  afterEach(() => {
-    unmountComponentAtNode(node);
-  });
+  // beforeEach(() => {
+  //   node = document.createElement('div');
+  // });
 
-  it('should render', () => {
-    render(<MyComponent />, node, () => {
-      expect(node.innerHTML).toContain('MYCOMPONENT');
-    });
-  });
+  // afterEach(() => {
+  //   unmountComponentAtNode(node);
+  // });
+
+  // it('should render', () => {
+  //   render(<PublicUploader />, node, () => {
+  //     expect(node.innerHTML).toContain('me-uploader_buttonUpload');
+  //   });
+  // });
 });
