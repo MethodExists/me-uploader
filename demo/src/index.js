@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Card, Layout } from 'antd';
+import { Button, Icon, Card, Layout } from 'antd';
 import dva from 'dva';
 import { Router, browserHistory } from 'dva/router';
 import fileModel from '~/model';
@@ -13,6 +13,7 @@ class Demo extends Component {
   }
 
   render() {
+    const { value } = this.state;
     return (
       <Layout>
         <Layout.Header>
@@ -22,8 +23,17 @@ class Demo extends Component {
           <Card style={{ padding: 30, marginBottom: 32 }}>
             <PublicUploader
               path="files/videos"
-              value={this.state.value}
-              onChange={value => this.setState({ value })}
+              value={value}
+              onChange={value => this.setState({ value })} // eslint-disable-line no-shadow
+            />
+          </Card>
+          <Card style={{ padding: 30, marginBottom: 32 }}>
+            <PublicUploader
+              path="files/videos"
+              value={value}
+              onChange={value => this.setState({ value })} // eslint-disable-line no-shadow
+              addButton={<Button><Icon type="upload" />{value ? 'Reupload' : 'Upload'}</Button>}
+              deleteButton={<Button><Icon type="delete" />Delete</Button>}
             />
           </Card>
         </Layout.Content>

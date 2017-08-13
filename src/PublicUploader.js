@@ -46,7 +46,7 @@ class PublicUploader extends React.Component {
   }
 
   render() {
-    const { value } = this.props;
+    const { deleteButton, addButton, value } = this.props;
 
     return (
       <div>
@@ -64,13 +64,21 @@ class PublicUploader extends React.Component {
           showUploadList={false}
           customRequest={this.handleUpload}
         >
-          <a><Icon type={value ? 'upload' : 'plus'} className="me-uploader_buttonUpload" /></a>
+          { addButton || (
+            <a><Icon type={value ? 'upload' : 'plus'} className="me-uploader_buttonUpload" /></a>
+          )}
         </Upload>
-        { value &&
-          <Popconfirm title="Are you sure to clear this file?" onConfirm={this.clearFile} okText="Yes" cancelText="No">
+        { value && <Popconfirm
+          title="Are you sure to clear this file?"
+          onConfirm={this.clearFile}
+          okText="Clear"
+          okType="danger"
+          cancelText="Cancel"
+        >
+          { deleteButton || (
             <a><Icon type="delete" className="me-uploader_buttonUpload" /></a>
-          </Popconfirm>
-        }
+          )}
+        </Popconfirm>}
       </div>
     );
   }
@@ -86,6 +94,8 @@ PublicUploader.propTypes = {
   path: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   value: PropTypes.string,
+  addButton: PropTypes.element, // eslint-disable-line react/require-default-props
+  deleteButton: PropTypes.element, // eslint-disable-line react/require-default-props
 };
 
 export default connect()(PublicUploader);
