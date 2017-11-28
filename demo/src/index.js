@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom';
-import { Button, Icon, Card, Layout } from 'antd';
-import dva from 'dva';
+import { message, Button, Icon, Card, Layout } from 'antd';
+import dva, { connect } from 'dva';
 import { Router, browserHistory } from 'dva/router';
 import fileModel from '~/model';
-import { init, PublicUploader } from '~';
+import { init, PublicUploader, upload } from '~';
 import fakeApiService from './apiService';
 
 class Demo extends Component {
   state = {
     value: undefined,
+    isUploading: false,
   }
 
   render() {
@@ -36,18 +38,39 @@ class Demo extends Component {
               deleteButton={<Button><Icon type="delete" />Delete</Button>}
             />
           </Card>
+          <Card title="Low-level upload method">
+            <input ref={(el) => { this.file = el; }} type="file" />
+            <Button
+              loading={this.state.isUploading}
+              onClick={() => {
+                this.setState({ isUploading: true });
+                upload(this.props.dispatch, 'files/images', this.file.files[0])
+                  .then((file) => {
+                    this.setState({ isUploading: false });
+                    message.success(`Uploaded ${file.url}`);
+                  })
+                  .catch(() => this.setState({ isUploading: false }));
+              }}
+            >
+              Upload
+            </Button>
+          </Card>
         </Layout.Content>
       </Layout>
     );
   }
 }
 
+Demo.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
 // -----
 
 function router({ history }) { // eslint-disable-line react/prop-types
   const routes = [{
     path: '/',
-    component: Demo,
+    component: connect()(Demo),
     childRoutes: [],
   }];
 

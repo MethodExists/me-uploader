@@ -12,7 +12,25 @@ Provide examples.
 
 ## API
 
-Describe API.
+### `upload(dispatch, path, fileObject)`
+Low-level upload method. Returns Promise.  
+Params:  
+`dispatch` - dva/redux `dispatch` method  
+`path` - path to upload file  
+`fileObject` - file object from html input[type="file"]  
+
+Successful promise resolves with result: `{ url, id }  `
+
+Usage example:
+
+```
+import { upload } from 'me-uploader';
+
+// ...
+
+upload(dispatch, 'files/images', file)
+  .then((file) => console.log('File URL:', file.url));
+```
 
 ## Contributing
 

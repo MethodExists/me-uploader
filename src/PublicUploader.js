@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Upload, Icon, Popconfirm, message } from 'antd';
 import { connect } from 'dva';
+import { upload } from './index.js';
 import './style.css';
 
 class PublicUploader extends React.Component {
@@ -14,31 +15,21 @@ class PublicUploader extends React.Component {
     this.setState({
       loading: true,
     });
-    new Promise((resolve, reject) => {
-      dispatch({
-        type: 'files/uploadSingle',
-        payload: {
-          file: handlingProps.file,
-          path,
-          isPublic: true,
-          resolve,
-          reject,
-        },
+    upload(dispatch, path, handlingProps.file)
+      .then((res) => {
+        message.success('Uploaded!');
+        handlingProps.onSuccess();
+        onChange(res.url);
+        this.setState({
+          loading: false,
+        });
+      }).catch((err) => {
+        message.error(err.message);
+        handlingProps.onError(err);
+        this.setState({
+          loading: false,
+        });
       });
-    }).then((res) => {
-      message.success('Uploaded!');
-      handlingProps.onSuccess();
-      onChange(res.url);
-      this.setState({
-        loading: false,
-      });
-    }).catch((err) => {
-      message.error(err.message);
-      handlingProps.onError(err);
-      this.setState({
-        loading: false,
-      });
-    });
   }
 
   clearFile = () => {
