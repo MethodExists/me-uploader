@@ -12,6 +12,7 @@ module.exports = {
         root: ['./src'],
         alias: {
           '~': './src',
+          dva: 'dva-react-router-3',
         },
       }],
     ],
