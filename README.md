@@ -4,11 +4,28 @@ Describe me-uploader.
 
 ## Usage
 
-Describe usage.
+### Setting up
 
-## Examples
+Provide API Service into module using `init` method:
 
-Provide examples.
+```
+import { init as initUploader } from '@methodexists/me-uploader';
+
+// ...
+
+initUploader({ apiService: APIService });
+
+```
+
+Register file uploader model in the app:
+
+```
+import fileUploaderModel from '@methodexists/me-uploader/lib/model';
+
+// ...
+
+app.model(fileUploaderModel);
+```
 
 ## API
 
