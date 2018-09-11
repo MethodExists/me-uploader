@@ -18,6 +18,10 @@ function upload({ filename, path, isPublic, customUrl }) {
   return getApiService().put('/file', { filename, path });
 }
 
+function getUrlToDownload({ filename, path, customUrl }) {
+  return getApiService().get(customUrl, { filename, path });
+}
+
 function del({ id }) {
   return getApiService().del(`/file/${id}`);
 }
@@ -49,4 +53,5 @@ export default {
   upload,
   del,
   xhrRequest,
+  getUrlToDownload,
 };

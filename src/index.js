@@ -1,3 +1,5 @@
+import service from './service';
+
 export PublicUploader from './PublicUploader';
 
 let apiService;
@@ -29,3 +31,6 @@ export function upload(dispatch, path, file, customUrl) {
   }));
 }
 
+export function getPresignedUrl(filename, path, customUrl) {
+  return service.getUrlToDownload({ filename, path, customUrl });
+}

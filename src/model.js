@@ -91,6 +91,9 @@ export default {
           filename: file.name, path, isPublic, customUrl,
         });
         yield call(service.xhrRequest, { url: response.url, file, method: 'PUT' });
+        if (customUrl) {
+          return resolve(response);
+        }
         const fileResponse = yield call(service.fetchOne, { id: response.id });
         yield put({
           type: 'updateFile',
