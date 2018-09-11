@@ -29,12 +29,13 @@ app.model(fileUploaderModel);
 
 ## API
 
-### `upload(dispatch, path, fileObject)`
-Low-level upload method. Returns Promise.  
-Params:  
-`dispatch` - dva/redux `dispatch` method  
-`path` - path to upload file  
-`fileObject` - file object from html input[type="file"]  
+### `upload(dispatch, path, fileObject, customUrl)`
+Low-level upload method. Returns Promise.
+Params:
+`dispatch` - dva/redux `dispatch` method
+`path` - path to upload file
+`fileObject` - file object from html input[type="file"]
+`customUrl` - if defined, the request for presignedUrl is being sent to this relative path
 
 Successful promise resolves with result: `{ url, id }  `
 
