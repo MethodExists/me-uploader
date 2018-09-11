@@ -15,13 +15,14 @@ export function getApiService() {
   return apiService;
 }
 
-export function upload(dispatch, path, file) {
+export function upload(dispatch, path, file, customUrl) {
   return new Promise((resolve, reject) => dispatch({
     type: 'files/uploadSingle',
     payload: {
       file,
       path,
       isPublic: true,
+      customUrl,
       resolve,
       reject,
     },

@@ -3,6 +3,7 @@ const delay = 1300;
 const mocks = {
   '/filePublic': { url: '//localhost:3001/uploadedFiles/file.jpg', id: '123' },
   '/table/files/123': { url: 'uploadedFiles/file.jpg', id: '123' },
+  '/ad/customUrl': { url: '//localhost:3001/customUrl', id: '123' },
 };
 
 export default {

@@ -55,6 +55,25 @@ class Demo extends Component {
               Upload
             </Button>
           </Card>
+          <Card title="Custom API upload method">
+            <input ref={(el) => { this.file = el; }} type="file" />
+            <Button
+              loading={this.state.isUploading}
+              onClick={() => {
+                this.setState({ isUploading: true });
+                upload(this.props.dispatch, 'files/images', this.file.files[0], '/ad/customUrl')
+                  .then((file) => {
+                    this.setState({ isUploading: false });
+                    message.success(`Uploaded ${file.url}`);
+                  })
+                  .catch(() => {
+                    this.setState({ isUploading: false });
+                  });
+              }}
+            >
+              Upload
+            </Button>
+          </Card>
         </Layout.Content>
       </Layout>
     );

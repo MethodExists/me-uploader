@@ -35,6 +35,11 @@ app.put('/uploadedFiles/:file', (req, res) => {
   res.jsonp({ ok: file });
 });
 
+app.put('/customUrl', (req, res) => {
+  const file = req.file;
+  res.jsonp({ ok: file });
+});
+
 app.listen(3001, () => {
   console.info('Backend server listening on port 3001');
 });

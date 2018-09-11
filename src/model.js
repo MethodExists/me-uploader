@@ -83,10 +83,13 @@ export default {
         reject(e);
       }
     },
-    *uploadSingle({ payload: { file, path, isPublic, resolve, reject } }, { call, put }) {
+    *uploadSingle({ payload: { file, path, isPublic, customUrl, resolve, reject } },
+      { call, put }) {
       try {
         yield put({ type: 'initSingleFile', payload: { path, filename: file.name } });
-        const response = yield call(service.upload, { filename: file.name, path, isPublic });
+        const response = yield call(service.upload, {
+          filename: file.name, path, isPublic, customUrl,
+        });
         yield call(service.xhrRequest, { url: response.url, file, method: 'PUT' });
         const fileResponse = yield call(service.fetchOne, { id: response.id });
         yield put({

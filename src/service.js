@@ -8,7 +8,10 @@ function fetchOne({ id }) {
   return getApiService().get(`/table/files/${id}`);
 }
 
-function upload({ filename, path, isPublic }) {
+function upload({ filename, path, isPublic, customUrl }) {
+  if (customUrl) {
+    return getApiService().put(customUrl, { filename, path });
+  }
   if (isPublic) {
     return getApiService().put('/filePublic', { filename, path });
   }
