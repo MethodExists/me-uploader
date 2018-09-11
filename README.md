@@ -29,6 +29,15 @@ app.model(fileUploaderModel);
 
 ## API
 
+### `getPresignedUrl(filename, path, customUrl)`
+Low-level get presigned url method. Returns Promise that resolves with server response.
+Params:
+`filename` - name of the file to download
+`path` - path to upload file
+`customUrl` -  the request for presignedUrl is being sent to this relative path
+
+Successful promise shall resolve with result: `{ url }  `
+
 ### `upload(dispatch, path, fileObject, customUrl)`
 Low-level upload method. Returns Promise.
 Params:
