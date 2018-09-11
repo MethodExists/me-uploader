@@ -5,7 +5,7 @@ import { message, Button, Icon, Card, Layout } from 'antd';
 import dva, { connect } from 'dva';
 import { Router, browserHistory } from 'dva/router';
 import fileModel from '~/model';
-import { init, PublicUploader, upload, getPresignedUrl } from '~';
+import { init, PublicUploader, upload } from '~';
 import fakeApiService from './apiService';
 
 class Demo extends Component {
@@ -15,7 +15,6 @@ class Demo extends Component {
   }
 
   render() {
-    getPresignedUrl('test', 'test', 'test');
     const { value } = this.state;
     return (
       <Layout>
