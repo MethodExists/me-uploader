@@ -27,7 +27,7 @@ function del({ id }) {
 }
 
 function remove({ filename, path, customUrl }) {
-  return getApiService().remove(customUrl, { filename, path });
+  return getApiService().del(customUrl, { filename, path });
 }
 
 function xhrRequest({ url, file, method }) {
