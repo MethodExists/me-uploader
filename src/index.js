@@ -41,3 +41,16 @@ export function getPresignedUrl(dispatch, filename, path, customUrl) {
     },
   }));
 }
+
+export function remove(dispatch, filename, path, customUrl) {
+  return new Promise((resolve, reject) => dispatch({
+    type: 'files/remove',
+    payload: {
+      filename,
+      path,
+      customUrl,
+      resolve,
+      reject,
+    },
+  }));
+}

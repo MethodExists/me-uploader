@@ -26,6 +26,10 @@ function del({ id }) {
   return getApiService().del(`/file/${id}`);
 }
 
+function remove({ filename, path, customUrl }) {
+  return getApiService().remove(customUrl, { filename, path });
+}
+
 function xhrRequest({ url, file, method }) {
   return new Promise((resolve, reject) => {
     const signedUrl = url;
@@ -52,6 +56,7 @@ export default {
   fetchOne,
   upload,
   del,
+  remove,
   xhrRequest,
   getUrlToDownload,
 };

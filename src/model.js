@@ -119,6 +119,14 @@ export default {
         reject(e);
       }
     },
+    *remove({ payload: { filename, path, customUrl, resolve, reject } }, { call }) {
+      try {
+        const response = yield call(service.remove, { filename, path, customUrl });
+        resolve(response);
+      } catch (e) {
+        reject(e);
+      }
+    },
     *delete({ payload: { id, resolve, reject } }, { call }) {
       try {
         const response = yield call(service.del, { id });

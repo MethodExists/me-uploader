@@ -33,7 +33,7 @@ app.model(fileUploaderModel);
 Low-level get presigned url method. Returns Promise that resolves with server response.
 Params:
 `filename` - name of the file to download
-`path` - path to upload file
+`path` - path to downloaded file
 `customUrl` -  the request for presignedUrl is being sent to this relative path
 
 Successful promise shall resolve with result: `{ url }  `
@@ -47,6 +47,15 @@ Params:
 `customUrl` - if defined, the request for presignedUrl is being sent to this relative path
 
 Successful promise resolves with result: `{ url, id }  `
+
+### `remove(filename, path, customUrl)`
+Low-level remove file method. Returns Promise that resolves with server response.
+Params:
+`filename` - name of the file to remove
+`path` - path to removed file
+`customUrl` -  the request for file deletion is being sent to this relative path
+
+Successful promise shall resolve with result: `{ url }  `
 
 Usage example:
 
